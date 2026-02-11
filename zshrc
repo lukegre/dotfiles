@@ -1,10 +1,5 @@
-# Homebrew env first (may set PATH/MANPATH/INFOPATH)
+# Homebrew env first
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-autoload -Uz compinit
-compinit -C
-autoload -Uz colors
-colors
 
 export KUBECONFIG="$HOME/.kube/config"
 
@@ -13,9 +8,9 @@ typeset -U path
 path=(
   $HOME/.local/bin
   $HOME/.runai/bin
+  /usr/local/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
-  /usr/local/bin
   /System/Cryptexes/App/usr/bin
   /usr/bin
   /bin
@@ -26,16 +21,22 @@ path=(
   /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
 )
 
-# Prompt
-eval "$(starship init zsh)"
 
-# Completions that use compdef must come after compinit
-source <($HOME/.runai/bin/runai completion zsh)
+# Make sure Homebrew site-functions are visible (docker, etc.)
+fpath=(
+  /opt/homebrew/share/zsh/site-functions 
+  $HOME/.docker/completions
+  $fpath
+)
+
+autoload -Uz compinit
+compinit -C
+
+# this line still creates an error - suppress output to null
+source <($HOME/.runai/bin/runai completion zsh) &> /dev/null
+
+# If your aliases file contains compdef or completion stuff, keep it after compinit too
 source ~/.zsh_aliases
 
-
-# ls colors
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
-export LESS='-R'
-alias grep='grep --color=auto'
+# Prompt (can be before or after; doesn’t matter for compdef)
+eval "$(starship init zsh)"
