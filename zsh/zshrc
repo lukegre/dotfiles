@@ -35,8 +35,9 @@ compinit -C
 # this line still creates an error - suppress output to null
 source <($HOME/.runai/bin/runai completion zsh) &> /dev/null
 
-# If your aliases file contains compdef or completion stuff, keep it after compinit too
-source ~/.zsh_aliases
-
 # Prompt (can be before or after; doesn’t matter for compdef)
 eval "$(starship init zsh)"
+
+# If your aliases file contains compdef or completion stuff, keep it after compinit too
+source ~/.dotfiles/zsh/zsh_aliases
+source ~/.dotfiles/zsh/zsh_prompt
