@@ -15,11 +15,8 @@ echo "  Linked .zshrc"
 ln -sf "$DOTFILES/bash/bashrc" "$HOME/.bashrc"
 echo "  Linked .bashrc"
 
-# Ensure bash login shells source .bashrc
-if [ ! -f "$HOME/.bash_profile" ] || ! grep -q 'bashrc' "$HOME/.bash_profile"; then
-    echo '[ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"' >> "$HOME/.bash_profile"
-    echo "  Updated .bash_profile to source .bashrc"
-fi
+ln -sf "$DOTFILES/bash/bash_profile" "$HOME/.bash_profile"
+echo "  Linked .bash_profile"
 
 # Starship
 ln -sf "$DOTFILES/starship.toml" "$HOME/.config/starship.toml"

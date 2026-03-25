@@ -1,0 +1,7 @@
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# Source user bashrc for interactive settings
+[ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
