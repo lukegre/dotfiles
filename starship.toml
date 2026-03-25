@@ -10,7 +10,7 @@ $username\
 ${custom.host_runai}\
 ${custom.host_docker}\
 ${custom.host_euler}\
-${custom.host_vpn}\
+${custom.host_vpn_ethz}\
 ${custom.host_generic}\
 [](bg:color_yellow fg:color_orange)\
 $directory\
@@ -95,10 +95,10 @@ style = "bg:color_orange fg:color_fg0 bold"
 when = ''' case "$(hostname -s)" in eu-*) exit 0 ;; *) exit 1 ;; esac '''
 format = '[@euler($style) ]($style)'
 
-[custom.host_vpn]
+[custom.host_vpn_ethz]
 style = "bg:color_orange fg:color_fg0 bold"
 when = ''' case "$(hostname -s)" in *staff-net-vpn*) exit 0 ;; *) exit 1 ;; esac '''
-format = '[@ETHZ-vpn($style) ]($style)'
+format = '[@vpn-ETHZ($style) ]($style)'
 
 [custom.host_generic]
 style = "bg:color_orange fg:color_fg0 bold"
