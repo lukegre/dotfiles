@@ -10,6 +10,8 @@ $username\
 ${custom.host_runai}\
 ${custom.host_docker}\
 ${custom.host_euler}\
+${custom.host_vpn}\
+${custom.host_generic}\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
@@ -84,20 +86,31 @@ when = ''' [ -d /myhome ] '''
 format = '[@runai($style) ]($style)'
 
 [custom.host_docker]
-style = "bg:color_orange fg:color_fg0"
+style = "bg:color_orange fg:color_fg0 bold"
 when = ''' [ ! -d /myhome ] && [ -f /.dockerenv ] '''
 format = '[ ($style)  ]($style)'
 
 [custom.host_euler]
-style = "bg:color_orange fg:color_fg0"
-when = ''' [ ! -d /myhome ] && [ -f /.dockerenv ] '''
-format = '[ @euler($style)  ]($style)'
+style = "bg:color_orange fg:color_fg0 bold"
+when = ''' case "$(hostname -s)" in eu-*) exit 0 ;; *) exit 1 ;; esac '''
+format = '[@euler($style)  ]($style)'
+
+[custom.host_vpn]
+style = "bg:color_orange fg:color_fg0 bold"
+when = ''' case "$(hostname -s)" in *staff-net-vpn*) exit 0 ;; *) exit 1 ;; esac '''
+format = '[@ETHZ-vpn($style)  ]($style)'
+
+[custom.host_generic]
+style = "bg:color_orange fg:color_fg0 bold"
+when = ''' [ ! -d /myhome ] && [ ! -f /.dockerenv ] && case "$(hostname -s)" in eu-*|*staff-net-vpn*) exit 1 ;; *) exit 0 ;; esac '''
+command = 'hostname -s'
+format = '[@$output($style)  ]($style)'
 
 [username]
 show_always = true
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
-format = '[ $user ]($style)'
+format = '[ $user]($style)'
 
 [directory]
 style = "fg:color_fg0 bg:color_yellow"
