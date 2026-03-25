@@ -7,6 +7,9 @@ format = """
 [](color_orange)\
 $os\
 $username\
+${custom.host_runai}\
+${custom.host_docker}\
+${custom.host_euler}\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
@@ -74,6 +77,21 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 Pop = ""
+
+[custom.host_runai]
+style = "bg:color_orange fg:color_fg0 bold"
+when = ''' [ -d /myhome ] '''
+format = '[@runai($style) ]($style)'
+
+[custom.host_docker]
+style = "bg:color_orange fg:color_fg0"
+when = ''' [ ! -d /myhome ] && [ -f /.dockerenv ] '''
+format = '[ ($style)  ]($style)'
+
+[custom.host_euler]
+style = "bg:color_orange fg:color_fg0"
+when = ''' [ ! -d /myhome ] && [ -f /.dockerenv ] '''
+format = '[ @euler($style)  ]($style)'
 
 [username]
 show_always = true
