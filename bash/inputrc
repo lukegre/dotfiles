@@ -1,0 +1,14 @@
+$include /etc/inputrc
+
+# Case-insensitive completion
+set completion-ignore-case on
+
+# Treat hyphens and underscores as equivalent
+set completion-map-case on
+
+# Show all matches if ambiguous
+set show-all-if-ambiguous on
+
+# Cycle through completions with Tab
+TAB: menu-complete
+"\e[Z": menu-complete-backward
