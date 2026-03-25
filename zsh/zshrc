@@ -1,43 +1,29 @@
-# Homebrew env first
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# ── Shared config ──────────────────────────────────
+source "$HOME/.dotfiles/shared/env"
+source "$HOME/.dotfiles/shared/aliases"
 
-export KUBECONFIG="$HOME/.kube/config"
+# ── Zsh-specific ──────────────────────────────────
 
-# Keep PATH unique and controlled
+# Deduplicate PATH
 typeset -U path
-path=(
-  $HOME/.local/bin
-  $HOME/.runai/bin
-  /usr/local/bin
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-  /System/Cryptexes/App/usr/bin
-  /usr/bin
-  /bin
-  /usr/sbin
-  /sbin
-  /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin
-  /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin
-  /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
-)
 
-
-# Make sure Homebrew site-functions are visible (docker, etc.)
+# Completions
 fpath=(
-  /opt/homebrew/share/zsh/site-functions 
-  $HOME/.docker/completions
-  $fpath
+    /opt/homebrew/share/zsh/site-functions
+    $HOME/.docker/completions
+    $fpath
 )
 
 autoload -Uz compinit
 compinit -C
 
-# this line still creates an error - suppress output to null
-source <($HOME/.runai/bin/runai completion zsh) &> /dev/null
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# Prompt (can be before or after; doesn’t matter for compdef)
+# RunAI completion
+if command -v runai >/dev/null 2>&1; then
+    source <($HOME/.runai/bin/runai completion zsh) 2>/dev/null
+fi
+
+# Prompt
 eval "$(starship init zsh)"
-
-# If your aliases file contains compdef or completion stuff, keep it after compinit too
-source ~/.dotfiles/zsh/zsh_aliases
-source ~/.dotfiles/zsh/zsh_prompt

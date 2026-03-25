@@ -1,0 +1,25 @@
+# ── Shared config ──────────────────────────────────
+source "$HOME/.dotfiles/shared/env"
+source "$HOME/.dotfiles/shared/aliases"
+
+# ── Bash-specific ─────────────────────────────────
+
+# Bash completion
+if [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+    source /opt/homebrew/etc/profile.d/bash_completion.sh
+elif [ -r /usr/local/etc/profile.d/bash_completion.sh ]; then
+    source /usr/local/etc/profile.d/bash_completion.sh
+elif [ -r /etc/bash_completion ]; then
+    source /etc/bash_completion
+fi
+
+# Case-insensitive completion
+bind 'set completion-ignore-case on'
+
+# RunAI completion
+if command -v runai >/dev/null 2>&1; then
+    source <($HOME/.runai/bin/runai completion bash) 2>/dev/null
+fi
+
+# Prompt
+eval "$(starship init bash)"
