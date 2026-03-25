@@ -5,7 +5,7 @@ nc-xrdump() {
 }
 
 # Move a folder to a new location and leave a symlink in its place
-move_and_link() {
+move_and_softlink() {
     if [ "$#" -ne 2 ]; then
         echo "Usage: move_and_link <target> <dest>"
         echo "  <target>: The folder to be moved."

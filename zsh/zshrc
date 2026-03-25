@@ -3,7 +3,6 @@ source "$HOME/.dotfiles/shared/env"
 source "$HOME/.dotfiles/shared/config"
 source "$HOME/.dotfiles/shared/aliases"
 source "$HOME/.dotfiles/shared/functions"
-source "$HOME/.dotfiles/shared/ssh-agent"
 
 # ── Zsh-specific ──────────────────────────────────
 

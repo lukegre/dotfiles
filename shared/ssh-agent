@@ -1,4 +1,0 @@
-# Start SSH agent if not already running
-if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent >/dev/null 2>&1; then
-    eval "$(ssh-agent -s)" > /dev/null
-fi

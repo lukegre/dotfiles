@@ -1,22 +1,16 @@
-# ls - standard defaults
-alias ls='ls --color=auto'
-alias l='ls'
-alias ll='ls -lh'
-alias la='ls -A'
-alias lla='ls -lAh'
-alias lt='ls -lhtr'
-alias lm='ls -lhSr'
-alias lh='ls -ld .*'
-
-# Override with eza if available
+# If eza is available, use it for a more feature-rich ls experience
 if command -v eza >/dev/null 2>&1; then
     alias ls='eza --group-directories-first'
-    alias ll='eza --icons --group-directories-first -lh --git'
-    alias la='eza --group-directories-first -A'
-    alias lla='eza --icons --group-directories-first -lAh --git'
-    alias lt='eza --icons --group-directories-first -lh --git --sort=modified'
-    alias lm='eza --icons --group-directories-first -lh --git --sort=size'
+    alias ll='ls --icons -lh --git'
+# Fallback to regular ls with color if eza is not available
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -lh'
 fi
+# General ls aliases (but expanding the ls aliases above)
+alias l='ls'
+alias la='ls -A'
+alias lla='ll -A'
 
 # Navigation
 alias ..='cd ..'
@@ -30,6 +24,3 @@ alias ssh='ssh -X'
 alias c='clear'
 alias dfh='df -h'
 alias duh='du -h -d 1'
-
-# Project-specific
-alias runai-portforward='make -C ~/Work/RunAI/runai_vscode_server/ port-forward-force'
