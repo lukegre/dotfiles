@@ -4,8 +4,8 @@ if command -v eza >/dev/null 2>&1; then
     alias ll='ls --icons -lh --git'
 else
     # Fallback to regular ls with color if eza is not available
-    alias ls='ls --color=auto --group-directories-first'
-    alias ll='ls -lh'
+    alias ls='LC_COLLATE=C ls --color=auto --group-directories-first'
+    alias ll='ls -lhF'
 fi
 # General ls aliases (but expanding the ls aliases above)
 alias l='ls'
