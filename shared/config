@@ -5,6 +5,7 @@ export EDITOR="vim"
 # Locale
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export LC_COLLATE="C"
 
 # macOS ls colors (fallback when eza not available)
 export CLICOLOR=1
