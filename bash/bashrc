@@ -1,8 +1,20 @@
 # ── Shared config ──────────────────────────────────
 source "$HOME/.dotfiles/shared/env"
+source "$HOME/.dotfiles/shared/config"
 source "$HOME/.dotfiles/shared/aliases"
+source "$HOME/.dotfiles/shared/functions"
+source "$HOME/.dotfiles/shared/ssh-agent"
 
 # ── Bash-specific ─────────────────────────────────
+
+# History
+shopt -s histappend
+export HISTCONTROL=ignoreboth
+export HISTFILESIZE=1000
+export HISTSIZE=1000
+export HISTTIMEFORMAT='%F %T '
+export HISTIGNORE="pwd:history"
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Bash completion
 if [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
@@ -20,6 +32,12 @@ bind 'set completion-ignore-case on'
 if command -v runai >/dev/null 2>&1; then
     source <($HOME/.runai/bin/runai completion bash) 2>/dev/null
 fi
+
+# Makefile target completion
+complete -W "$(grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile 2>/dev/null | sed 's/[^a-zA-Z0-9_.-]*$//')" make
+
+# iTerm2 shell integration
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # Prompt
 eval "$(starship init bash)"

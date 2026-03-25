@@ -1,11 +1,23 @@
 # ── Shared config ──────────────────────────────────
 source "$HOME/.dotfiles/shared/env"
+source "$HOME/.dotfiles/shared/config"
 source "$HOME/.dotfiles/shared/aliases"
+source "$HOME/.dotfiles/shared/functions"
+source "$HOME/.dotfiles/shared/ssh-agent"
 
 # ── Zsh-specific ──────────────────────────────────
 
 # Deduplicate PATH
 typeset -U path
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
 
 # Completions
 fpath=(

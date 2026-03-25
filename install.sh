@@ -25,4 +25,13 @@ fi
 ln -sf "$DOTFILES/starship.toml" "$HOME/.config/starship.toml"
 echo "  Linked starship.toml"
 
+# Git global ignore
+mkdir -p "$HOME/.config/git"
+ln -sf "$DOTFILES/git/gitignore_global" "$HOME/.config/git/ignore"
+echo "  Linked gitignore_global"
+
+# Readline (inputrc)
+ln -sf "$DOTFILES/bash/inputrc" "$HOME/.inputrc"
+echo "  Linked .inputrc"
+
 echo "Done. Restart your shell or run: source ~/.zshrc"

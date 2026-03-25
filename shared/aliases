@@ -4,6 +4,9 @@ alias l='ls'
 alias ll='ls -lh'
 alias la='ls -A'
 alias lla='ls -lAh'
+alias lt='ls -lhtr'
+alias lm='ls -lhSr'
+alias lh='ls -ld .*'
 
 # Override with eza if available
 if command -v eza >/dev/null 2>&1; then
@@ -11,12 +14,17 @@ if command -v eza >/dev/null 2>&1; then
     alias ll='eza --icons --group-directories-first -lh --git'
     alias la='eza --group-directories-first -A'
     alias lla='eza --icons --group-directories-first -lAh --git'
+    alias lt='eza --icons --group-directories-first -lh --git --sort=modified'
+    alias lm='eza --icons --group-directories-first -lh --git --sort=size'
 fi
 
 # Navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+# SSH with X forwarding
+alias ssh='ssh -X'
 
 # Utilities
 alias c='clear'

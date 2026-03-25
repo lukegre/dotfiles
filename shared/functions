@@ -1,0 +1,25 @@
+# xarray dataset dump
+nc-xrdump() {
+    local fname="$(pwd)/$1"
+    python -W ignore -c "import xarray as xr; print(xr.open_dataset('$fname'))"
+}
+
+# Move a folder to a new location and leave a symlink in its place
+move_and_link() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: move_and_link <target> <dest>"
+        echo "  <target>: The folder to be moved."
+        echo "  <dest>: The destination where <target> will be moved."
+        return 1
+    fi
+
+    local target=$(realpath "$1")
+    local dest=$(realpath "$2")
+
+    if [ -z "$target" ] || [ -z "$dest" ]; then
+        echo "Error: Unable to resolve real paths. Ensure that both paths exist."
+        return 1
+    fi
+
+    mv "$target" "$dest" && ln -s "$dest" "$target"
+}
