@@ -10,7 +10,7 @@ $username\
 ${custom.host_runai}\
 ${custom.host_docker}\
 ${custom.host_euler}\
-${custom.host_vpn_ethz}\
+${custom.host_vpn}\
 ${custom.host_generic}\
 [](bg:color_yellow fg:color_orange)\
 $directory\
@@ -56,29 +56,29 @@ disabled = false
 style = "bg:color_orange fg:color_fg0"
 
 [os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-openSUSE = " "
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-AOSC = ""
-Arch = "󰣇"
-Artix = "󰣇"
-EndeavourOS = ""
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
-Pop = ""
+Windows = "Win"
+Ubuntu = "Ubu"
+SUSE = "SUSE"
+openSUSE = "oSUSE"
+Raspbian = "Rasp"
+Mint = "Mint"
+Macos = "Mac"
+Manjaro = "Mjro"
+Linux = "Lnx"
+Gentoo = "Gnt"
+Fedora = "Fed"
+Alpine = "Alp"
+Amazon = "Amz"
+Android = "And"
+AOSC = "AOSC"
+Arch = "Arch"
+Artix = "Artx"
+EndeavourOS = "End"
+CentOS = "Cent"
+Debian = "Deb"
+Redhat = "RH"
+RedHatEnterprise = "RHEL"
+Pop = "Pop"
 
 [custom.host_runai]
 style = "bg:color_orange fg:color_fg0 bold"
@@ -88,7 +88,7 @@ format = '[@runai($style) ]($style)'
 [custom.host_docker]
 style = "bg:color_orange fg:color_fg0 bold"
 when = ''' [ ! -d /myhome ] && [ -f /.dockerenv ] '''
-format = '[ ($style)  ]($style)'
+format = '[@docker($style) ]($style)'
 
 [custom.host_euler]
 style = "bg:color_orange fg:color_fg0 bold"
@@ -116,7 +116,7 @@ format = '[ $user]($style)'
 style = "fg:color_fg0 bg:color_yellow"
 format = "[ $path ]($style)"
 truncation_length = 3
-truncation_symbol = "…/"
+truncation_symbol = ".../"
 
 [directory.substitutions]
 "Documents" = "DOCS"
@@ -208,9 +208,9 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[](bold fg:color_green)'
-error_symbol = '[](bold fg:color_red)'
-vimcmd_symbol = '[](bold fg:color_green)'
-vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
-vimcmd_replace_symbol = '[](bold fg:color_purple)'
-vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+success_symbol = '[$](bold fg:color_green)'
+error_symbol = '[!](bold fg:color_red)'
+vimcmd_symbol = '[N](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[r](bold fg:color_purple)'
+vimcmd_replace_symbol = '[R](bold fg:color_purple)'
+vimcmd_visual_symbol = '[V](bold fg:color_yellow)'
