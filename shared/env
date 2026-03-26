@@ -10,5 +10,3 @@ export KUBECONFIG="$HOME/.kube/config"
 
 # PATH additions
 export PATH="$HOME/.local/bin:$HOME/.runai/bin:$PATH"
-
-export UV_WORKING_DIRECTORY="/tmp/uv_envs/"
