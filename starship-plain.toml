@@ -183,6 +183,7 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 symbol = "py:"
 style = "bg:color_blue"
 format = '[[ $symbol( $version)( \[$virtualenv\]) ](fg:color_fg0 bg:color_blue)]($style)'
+detect_files = [".python-version", "pyproject.toml", ".venv"]
 
 [docker_context]
 symbol = "docker:"
