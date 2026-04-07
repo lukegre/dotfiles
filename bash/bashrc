@@ -29,8 +29,7 @@ if command -v runai >/dev/null 2>&1; then
     source <($HOME/.runai/bin/runai completion bash) 2>/dev/null
 fi
 
-# Makefile target completion
-complete -W "$(grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile 2>/dev/null | sed 's/[^a-zA-Z0-9_.-]*$//')" make
+source "$HOME/.dotfiles/bash/completions"
 
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
