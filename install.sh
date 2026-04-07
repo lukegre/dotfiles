@@ -19,6 +19,8 @@ ln -sf "$DOTFILES/bash/bash_profile" "$HOME/.bash_profile"
 echo "  Linked .bash_profile"
 
 # Starship
+mkdir -p "$HOME/.local/bin"
+curl -sS https://starship.rs/install.sh | sh -s -- --force -b "$HOME/.local/bin"
 ln -sf "$DOTFILES/starship.toml" "$HOME/.config/starship.toml"
 echo "  Linked starship.toml"
 
