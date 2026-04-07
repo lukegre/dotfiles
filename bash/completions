@@ -1,0 +1,7 @@
+# ── Bash completions ──────────────────────────────────────────────────────────
+
+# Makefile target completion (evaluated dynamically on each Tab press)
+_make_targets() {
+    COMPREPLY=($(compgen -W "$(grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile 2>/dev/null | sed 's/[^a-zA-Z0-9_.-]*$//')" -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+complete -F _make_targets make
